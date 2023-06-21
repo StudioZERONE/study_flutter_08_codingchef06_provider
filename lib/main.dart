@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (context) => FishModel(
         name: 'Salmon',
         number: 10,
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------
 class FishOrder extends StatelessWidget {
   const FishOrder({super.key});
 
@@ -54,6 +55,7 @@ class FishOrder extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------
 class High extends StatelessWidget {
   const High({super.key});
 
@@ -76,6 +78,7 @@ class High extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------
 class SpicyA extends StatelessWidget {
   const SpicyA({super.key});
 
@@ -108,6 +111,7 @@ class SpicyA extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------
 class Middle extends StatelessWidget {
   const Middle({super.key});
 
@@ -130,6 +134,7 @@ class Middle extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------
 class SpicyB extends StatelessWidget {
   const SpicyB({super.key});
 
@@ -162,6 +167,7 @@ class SpicyB extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------
 class Low extends StatelessWidget {
   const Low({super.key});
 
@@ -184,6 +190,7 @@ class Low extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------
 class SpicyC extends StatelessWidget {
   const SpicyC({super.key});
 
@@ -209,6 +216,12 @@ class SpicyC extends StatelessWidget {
         ),
         SizedBox(
           height: 20,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Provider.of<FishModel>(context, listen: false).ChangeFishNumber();
+          },
+          child: Text('Change fish number'),
         ),
       ],
     );
