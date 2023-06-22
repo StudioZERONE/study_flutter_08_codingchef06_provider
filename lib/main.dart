@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:study_flutter_08_codingchef06_provider/fish_model.dart';
+import 'package:study_flutter_08_codingchef06_provider/seafish_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +13,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FishModel(
-        name: 'Salmon',
-        number: 10,
-        size: 'big',
-      ),
+    // return ChangeNotifierProvider(
+    //   create: (context) => FishModel(
+    //     name: 'Salmon',
+    //     number: 10,
+    //     size: 'big',
+    //   ),
+    //   child: MaterialApp(
+    //     home: FishOrder(),
+    //   ),
+    // );
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => FishModel(
+            name: 'Salmon',
+            number: 10,
+            size: 'big',
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SeafishModel(
+            name: 'tuna',
+            tunaNumber: 0,
+            size: 'middle',
+          ),
+        ),
+      ],
       child: MaterialApp(
         home: FishOrder(),
       ),
@@ -151,12 +173,30 @@ class SpicyB extends StatelessWidget {
           ),
         ),
         Text(
+          'Tuna number: ${Provider.of<SeafishModel>(context).tunaNumber}',
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
           'Fish size: ${Provider.of<FishModel>(context).size}',
           style: TextStyle(
             fontSize: 16,
             color: Colors.red,
             fontWeight: FontWeight.bold,
           ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Provider.of<SeafishModel>(context, listen: false)
+                .ChangeSeafishNumber();
+          },
+          child: Text('Sea fish number'),
         ),
         SizedBox(
           height: 20,
@@ -200,6 +240,14 @@ class SpicyC extends StatelessWidget {
       children: [
         Text(
           'Fish number: ${Provider.of<FishModel>(context).number}',
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          'Tuna number: ${Provider.of<SeafishModel>(context).tunaNumber}',
           style: TextStyle(
             fontSize: 16,
             color: Colors.red,
