@@ -7,6 +7,11 @@ void main() {
   runApp(const MyApp());
 }
 
+// --------------
+// 아무래도 Firestore Database 관련 공부를 더 하는게 좋겠음..
+// --------------
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
